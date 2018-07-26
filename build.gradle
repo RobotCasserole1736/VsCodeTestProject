@@ -11,19 +11,6 @@ repositories {
 
 def ROBOT_CLASS = "frc.robot.Robot"
 
-
-remotes {
-  roboRIO {
-    role 'roboRIO'
-    host = '10.17.36.2'
-    user = 'lvuser'
-    knownHosts = allowAnyHosts
-    timeoutSec=8
-    retryCount=3
-    retryWaitSec=1
-  }
-}
-
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project EmbeddedTools.
 deploy {
@@ -34,12 +21,6 @@ deploy {
             // You can use getTeamOrDefault(team) instead of getTeamNumber if you
             // want to store a team number in this file.
             team = getTeamNumber()
-
-            //webserver deploy
-            ssh.run {
-                session(remotes.roboRIO) {
-                    put from: './resources', into: '/home/lvuser/resources/'
-                }
             }
         }
     }
@@ -48,6 +29,14 @@ deploy {
             targets << "roborio"
             // Debug can be overridden by command line, for use with VSCode
             debug = getDebugOrDefault(false)
+        }
+        
+        // WebServer Files Deploy
+        fileTreeArtifact('CasseroleWebServerFileDeploy') {
+            targets << "roborio"                   // Web server
+            files = fileTree(dir: './resources')   //Dev PC location for files
+            directory = '/home/lvuser/resources/'  //RoboRIO location to deploy to
+            
         }
     }
 }
