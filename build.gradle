@@ -1,7 +1,7 @@
 plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2019.0.0-alpha-3"
-    id 'org.hidetake.ssh' version '2.9.0'
+
 }
 
 repositories {
@@ -21,7 +21,6 @@ deploy {
             // You can use getTeamOrDefault(team) instead of getTeamNumber if you
             // want to store a team number in this file.
             team = getTeamNumber()
-            }
         }
     }
     artifacts {
@@ -84,24 +83,3 @@ compileJava {
 wrapper {
     gradleVersion = '4.9'
 }
-
-////Configure websocket test
-//sourceSets {
-//    websocketTest {
-//        compileClasspath += sourceSets.main.output
-//        runtimeClasspath += sourceSets.main.output
-//    }
-//}
-//
-//configurations {
-//    websocketTestImplementation.extendsFrom implementation
-//    websocketTestRuntimeOnly.extendsFrom runtimeOnly
-//}
-//
-//task websocketTest(type: Test){
-//    description = 'Runs local interactive webserver test.'
-//
-//    testClassesDirs = sourceSets.websocketTest.output.classesDirs
-//    classpath = sourceSets.websocketTest.runtimeClasspath
-//
-//}
