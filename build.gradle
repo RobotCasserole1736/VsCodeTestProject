@@ -95,3 +95,24 @@ compileJava {
 wrapper {
     gradleVersion = '4.9'
 }
+
+////Configure websocket test
+//sourceSets {
+//    websocketTest {
+//        compileClasspath += sourceSets.main.output
+//        runtimeClasspath += sourceSets.main.output
+//    }
+//}
+//
+//configurations {
+//    websocketTestImplementation.extendsFrom implementation
+//    websocketTestRuntimeOnly.extendsFrom runtimeOnly
+//}
+//
+//task websocketTest(type: Test){
+//    description = 'Runs local interactive webserver test.'
+//
+//    testClassesDirs = sourceSets.websocketTest.output.classesDirs
+//    classpath = sourceSets.websocketTest.runtimeClasspath
+//
+//}
