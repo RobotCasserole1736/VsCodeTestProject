@@ -75,7 +75,7 @@ public class CasseroleWebServer {
         resource_handler.setDirectoriesListed(true);
         resource_handler.setWelcomeFiles(new String[] {"index.html"});
         if (LOCAL_PC_DEBUG_PATHS) {
-            resource_handler.setResourceBase("resources/");
+            resource_handler.setResourceBase("../resources/");
         } else {
             resource_handler.setResourceBase("/home/lvuser/resources/");
         }
