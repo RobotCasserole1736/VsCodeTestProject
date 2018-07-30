@@ -18,5 +18,5 @@ Key components that 1736 is curious about:
 # Development Features
 - Run `./gradlew deploy` in the root of the repo to build & deploy robot code
 - Run `./gradlew clean` in the root of the repo to clean up all temp files
-- Run `./gradlew run` in the websocketTest folder to start up a local version of the robot webserver as a test. Ctrl-c to quit.
+- Run `../gradlew run` in the websocketTest folder to start up a local version of the robot webserver as a test. Ctrl-c to quit.
 
