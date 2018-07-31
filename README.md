@@ -6,9 +6,17 @@ Key components that 1736 is curious about:
    - [x] Lubuntu
    - [ ] Manjaro
    - [ ] Windows
- - [ ] CasseroleWebServer support
-   - [ ] Add Jetty .jar dependencies to the build
-   - [ ] Add a deploy target to copy .html/.css/.js resources to the correct folder on the RIO
+ - [X] CasseroleWebServer support
+   - [X] Add Jetty .jar dependencies to the build
+   - [X] Add a deploy target to copy .html/.css/.js resources to the correct folder on the RIO
  - [ ] Log file snagger integration with build
  - [ ] Debugger behavior/performance
  - [ ] Investigate QDriverStation as an alternative to the "legit" one on linux
+ - [ ] Add git info to software via manifest changes @ build time and a small library to retrieve the info at runtime
+ - [ ] Add a deploy lock that aborts the deploy (but not the build) if git has uncommitted changes
+
+# Development Features
+- Run `./gradlew deploy` in the root of the repo to build & deploy robot code
+- Run `./gradlew clean` in the root of the repo to clean up all temp files
+- Run `../gradlew run` in the websocketTest folder to start up a local version of the robot webserver as a test. Ctrl-c to quit.
+
