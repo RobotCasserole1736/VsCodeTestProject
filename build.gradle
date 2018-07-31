@@ -125,7 +125,7 @@ task genMetaData(){
         String git_sha1 = ""
         String git_branch = ""
         String git_wd_clean = ""
-        String git_tag = ""
+        String git_tag_list = ""
 
         //Get the user's name. Shouldn't throw errors, just "null" if 
         // it can't figure out who you are.
@@ -153,24 +153,27 @@ task genMetaData(){
         // Get currently checked-out branch friendly name
         try{
             git_branch = Grgit.open(dir:'.').branch.current().name
-        } catch (all) {git_tag
+        } catch (all) {
             git_branch = "unknown"
         }
 
-        // Get friendly name of most recent tag on this commit, if any.
+        // Get friendly names of the tags on this commit (if any)
         try{
             def repo = Grgit.open(dir:'.')
             def head = repo.head()
             def tag_list = repo.tag.list().findAll{it.commit == head}
             if(tag_list.size() > 0){
-                git_tag = tag_list[0].getName()
+                for(tag_obj in tag_list){
+                    git_tag_list += tag_obj.getName()+","
+                }
+                
             } else {
-                git_tag = "none"
+                git_tag_list = "none"
             }
 
         } catch (Exception e) {
             System.out.println(e)
-            git_tag = "unknown"
+            git_tag_list = "unknown"
         }
 
         // Get clean/dirty status of working directory
@@ -184,7 +187,7 @@ task genMetaData(){
         filecontents += "build_uname: ${build_uname}\n"
         filecontents += "build_host: ${build_host}\n"
         filecontents += "build_time: ${build_time}\n"
-        filecontents += "git_tag_list: ${git_tag}\n"
+        filecontents += "git_tag_list: ${git_tag_list}\n"
         filecontents += "git_branch: ${git_branch}\n"
         filecontents += "git_sha1: ${git_sha1}\n"
         filecontents += "git_wd_clean: ${git_wd_clean}\n"
