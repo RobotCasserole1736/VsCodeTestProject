@@ -124,7 +124,7 @@ task genMetaData(){
         String build_time = ""
         String git_sha1 = ""
         String git_branch = ""
-        String git_sd_clean = ""
+        String git_wd_clean = ""
 
         //Get the user's name. Shouldn't throw errors, just "null" if 
         // it can't figure out who you are.
@@ -161,7 +161,7 @@ task genMetaData(){
         }
 
         try{
-            git_wd_clean = str(Grgit.open(dir:'.').status().isClean())
+            git_wd_clean = Grgit.open(dir:'.').status().isClean()
         } catch (all) {
             git_wd_clean = "unknown"
         }
