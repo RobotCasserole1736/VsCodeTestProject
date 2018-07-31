@@ -125,6 +125,7 @@ task genMetaData(){
         String git_sha1 = ""
         String git_branch = ""
         String git_wd_clean = ""
+        String git_tags = ""
 
         //Get the user's name. Shouldn't throw errors, just "null" if 
         // it can't figure out who you are.
@@ -161,6 +162,15 @@ task genMetaData(){
         }
 
         try{
+            def repo = Grgit.open(dir:'.')
+            def head = repo.head()
+            git_tags = repo.tag.list().findAll{it.commit == head}
+        } catch (Exception e) {
+            System.out.println(e)
+            git_tags = "unknown"
+        }
+
+        try{
             git_wd_clean = Grgit.open(dir:'.').status().isClean()
         } catch (all) {
             git_wd_clean = "unknown"
@@ -170,11 +180,10 @@ task genMetaData(){
         filecontents += "build_uname: ${build_uname}\n"
         filecontents += "build_host: ${build_host}\n"
         filecontents += "build_time: ${build_time}\n"
-        filecontents += "git_sha1: ${git_sha1}\n"
+        filecontents += "git_tag_list: ${git_tags}\n"
         filecontents += "git_branch: ${git_branch}\n"
+        filecontents += "git_sha1: ${git_sha1}\n"
         filecontents += "git_wd_clean: ${git_wd_clean}\n"
-
-
 
         new File(BUILD_INFO_FILE).text = filecontents
     }
