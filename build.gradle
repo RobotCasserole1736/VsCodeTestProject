@@ -125,7 +125,7 @@ task genMetaData(){
         String git_sha1 = ""
         String git_branch = ""
         String git_wd_clean = ""
-        String git_tags = ""
+        String git_tag = ""
 
         //Get the user's name. Shouldn't throw errors, just "null" if 
         // it can't figure out who you are.
@@ -143,44 +143,48 @@ task genMetaData(){
         //Build time in totally-not-ISO format
         build_time = new SimpleDateFormat("MM-dd-yyyy hh:mm:ssa").format(new Date())
 
-        try{
-            build_host = InetAddress.getLocalHost().getHostName()
-        } catch (all) {
-            build_host = "unknown"
-        }
-
+        // Get currently checked-out SHA1
         try{
             git_sha1 = Grgit.open(dir:'.').head().id
         } catch (all) {
             git_sha1 = "unknown"
         }
 
+        // Get currently checked-out branch friendly name
         try{
             git_branch = Grgit.open(dir:'.').branch.current().name
-        } catch (all) {
+        } catch (all) {git_tag
             git_branch = "unknown"
         }
 
+        // Get friendly name of most recent tag on this commit, if any.
         try{
             def repo = Grgit.open(dir:'.')
             def head = repo.head()
-            git_tags = repo.tag.list().findAll{it.commit == head}
+            def tag_list = repo.tag.list().findAll{it.commit == head}
+            if(tag_list.length > 0){
+                git_tag = tag_list[0].getName()
+            } else {
+                git_tag = "none"
+            }
+
         } catch (Exception e) {
             System.out.println(e)
-            git_tags = "unknown"
+            git_tag = "unknown"
         }
 
+        // Get clean/dirty status of working directory
         try{
             git_wd_clean = Grgit.open(dir:'.').status().isClean()
         } catch (all) {
             git_wd_clean = "unknown"
         }
 
-        //Build file contents and write to disk
+        // Build file contents and write to disk
         filecontents += "build_uname: ${build_uname}\n"
         filecontents += "build_host: ${build_host}\n"
         filecontents += "build_time: ${build_time}\n"
-        filecontents += "git_tag_list: ${git_tags}\n"
+        filecontents += "git_tag_list: ${git_tag}\n"
         filecontents += "git_branch: ${git_branch}\n"
         filecontents += "git_sha1: ${git_sha1}\n"
         filecontents += "git_wd_clean: ${git_wd_clean}\n"
