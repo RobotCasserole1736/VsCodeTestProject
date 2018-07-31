@@ -162,7 +162,7 @@ task genMetaData(){
             def repo = Grgit.open(dir:'.')
             def head = repo.head()
             def tag_list = repo.tag.list().findAll{it.commit == head}
-            if(tag_list.length > 0){
+            if(tag_list.size() > 0){
                 git_tag = tag_list[0].getName()
             } else {
                 git_tag = "none"
