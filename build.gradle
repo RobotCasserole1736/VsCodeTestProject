@@ -81,9 +81,9 @@ deploy {
 
         //Build info file deploy 
         fileArtifact('BuildInfoDeploy') {
-            targets << "roborio"             // build info should deploy to RIO 
-            file = file(BUILD_INFO_FILE)     // Dev PC location for file
-            directory = '/home/lvuser/'      // RoboRIO location to deploy to
+            targets << "roborio"                  // build info should deploy to RIO 
+            file = file(BUILD_INFO_FILE)          // Dev PC location for file
+            directory = '/home/lvuser/resources/' // RoboRIO location to deploy to
         }
     }
 }
