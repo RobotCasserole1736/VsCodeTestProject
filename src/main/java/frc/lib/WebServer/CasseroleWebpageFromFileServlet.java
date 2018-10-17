@@ -1,4 +1,4 @@
-package frc.lib.WebServer;
+package WebServer;
 /*
  *******************************************************************************************
  * Copyright (C) 2017 FRC Team 1736 Robot Casserole - www.robotcasserole.org

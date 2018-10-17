@@ -1,4 +1,4 @@
-package frc.lib.WebServer;
+package WebServer;
 /*
  *******************************************************************************************
  * Copyright (C) 2017 FRC Team 1736 Robot Casserole - www.robotcasserole.org
@@ -22,8 +22,8 @@ package frc.lib.WebServer;
 import java.io.IOException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import frc.lib.Calibration.Calibration;
-import frc.lib.Calibration.CalWrangler;
+import Calibration.Calibration;
+import Calibration.CalWrangler;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 

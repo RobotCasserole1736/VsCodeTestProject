@@ -1,4 +1,4 @@
-package frc.lib.WebServer;
+package WebServer;
 import org.json.simple.JSONObject;
 
 public class DriverViewWebcam extends DriverViewObject{

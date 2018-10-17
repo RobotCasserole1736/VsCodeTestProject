@@ -1,4 +1,4 @@
-package frc.lib.WebServer;
+package WebServer;
 public class Utils {
 	
 	static String nameTransform(String name_in){

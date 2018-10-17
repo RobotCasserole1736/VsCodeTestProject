@@ -1,4 +1,4 @@
-package frc.lib.WebServer;
+package WebServer;
 public class PlotSample {
 	double value;
 	double time;

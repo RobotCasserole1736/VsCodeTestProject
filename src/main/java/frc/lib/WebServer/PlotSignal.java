@@ -1,4 +1,4 @@
-package frc.lib.WebServer;
+package WebServer;
 import java.util.LinkedList;
 import java.util.Queue;
 

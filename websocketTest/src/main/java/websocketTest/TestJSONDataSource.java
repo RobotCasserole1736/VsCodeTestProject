@@ -1,9 +1,9 @@
 package websocketTest;
 
-import frc.lib.Calibration.Calibration;
-import frc.lib.WebServer.CasseroleDriverView;
-import frc.lib.WebServer.CasseroleWebPlots;
-import frc.lib.WebServer.CassesroleWebStates;
+import Calibration.Calibration;
+import WebServer.CasseroleDriverView;
+import WebServer.CasseroleWebPlots;
+import WebServer.CassesroleWebStates;
 
 public class TestJSONDataSource {
 	

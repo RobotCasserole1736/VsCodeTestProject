@@ -1,9 +1,7 @@
 package websocketTest;
 
-import frc.lib.Calibration.CalWrangler;
-import frc.lib.WebServer.CasseroleDriverView;
-import frc.lib.WebServer.CasseroleWebServer;
-import frc.lib.WebServer.CassesroleWebStates;
+import Calibration.CalWrangler;
+import WebServer.CasseroleWebServer;
 
 public class MainServer {
 	

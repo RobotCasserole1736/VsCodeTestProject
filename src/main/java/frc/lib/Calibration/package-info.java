@@ -3,4 +3,4 @@
  * re-flashing software.
  */
 
-package frc.lib.Calibration;
+package Calibration;
